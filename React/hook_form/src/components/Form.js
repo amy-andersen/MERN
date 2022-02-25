@@ -25,47 +25,37 @@ const Form = (props) => {
     //display form 
     return(
         <form onSubmit={ createUser }>
-            <div className="container">
+            <div className="col-5 mx-auto bg-dark text-info p-5 rounded">
                 {hasBeenSubmitted 
                 ? <h3>Thank you for submitting the form!</h3> 
                 : <h3>Welcome, please submit the form.</h3>}
-                <div className="form">
-                    <label htmlFor="firstName">First Name:</label>
-                    <input type="text" name="firstName" value={firstName} onChange={ (e) => setFirstName(e.target.value) } /> 
-                </div>
-                {firstName.length < 2 && firstName.length > 0 
-                ? <p>First Name must be at least 2 characters.</p>
-                : null}
-                <div className="form">
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" name="lastName" value={lastName} onChange={ (e) => setLastName(e.target.value) } />
-                </div>
-                {lastName.length < 2 && lastName.length > 0 
-                ? <p>Last Name must be at least 2 characters.</p>
-                : null}
-                <div className="form">
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" name="email" value={email} onChange={ (e) => setEmail(e.target.value) } />
-                </div>
-                {email.length < 5 && email.length > 0 
-                ? <p>Email must be at least 5 characters.</p>
-                : null}
-                <div className="form">
-                    <label htmlFor="password">Password:</label>
-                    <input type="text" name="password" value={password} onChange={ (e) => setPassword(e.target.value) } />
-                </div>
-                {password.length < 8 && password.length > 0 
-                ? <p>Password must be at least 8 characters.</p>
-                : null}
-                <div className="form">
-                    <label htmlFor="confirmPassword">Confirm Password:</label>
-                    <input type="text" name="confirmPassword" value={confirmPassword} onChange={ (e) => setConfirmPassword(e.target.value) } />
-                </div>
-                {confirmPassword !== password 
-                ? <p>Passwords must match</p> 
-                : null}
-                <div>
-                    <input type="submit" value="Creat User" />
+                <div className="form-group">
+                    <label htmlFor="firstName" className="d-flex text-start">First Name:</label>
+                    <input type="text" name="firstName" className="form-control" value={firstName} onChange={ (e) => setFirstName(e.target.value) } /> 
+                    {firstName.length < 2 && firstName.length > 0 
+                    ? <p className="text-light">First Name must be at least 2 characters.</p>
+                    : null}
+                    <label htmlFor="lastName" className="d-flex text-start">Last Name:</label>
+                    <input type="text" name="lastName" className="form-control" value={lastName} onChange={ (e) => setLastName(e.target.value) } />
+                    {lastName.length < 2 && lastName.length > 0 
+                    ? <p className="text-light">Last Name must be at least 2 characters.</p>
+                    : null}
+                    <label htmlFor="email" className="d-flex text-start">Email:</label>
+                    <input type="text" name="email" className="form-control" value={email} onChange={ (e) => setEmail(e.target.value) } />
+                    {email.length < 5 && email.length > 0 
+                    ? <p className="text-light">Email must be at least 5 characters.</p>
+                    : null}
+                    <label htmlFor="password" className="d-flex text-start">Password:</label>
+                    <input type="text" name="password" className="form-control" value={password} onChange={ (e) => setPassword(e.target.value) } />
+                    {password.length < 8 && password.length > 0 
+                    ? <p className="text-light">Password must be at least 8 characters.</p>
+                    : null}
+                    <label htmlFor="confirmPassword" className="d-flex text-start">Confirm Password:</label>
+                    <input type="text" name="confirmPassword" className="form-control" value={confirmPassword} onChange={ (e) => setConfirmPassword(e.target.value) } />
+                    {confirmPassword !== password 
+                    ? <p className="text-light">Passwords must match</p> 
+                    : null}
+                    <input type="submit" class="btn btn-warning mt-4" value="Creat User" />
                 </div>
             </div>
             <div>
