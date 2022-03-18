@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom';
 
 const ProductForm = (props) => {
+
+    //getting state from Main through props
+    const {products, setProducts} = props;
 
     //keep track of what is being entered via useState hook
     const [title, setTitle] = useState(""); 
@@ -25,19 +28,20 @@ const ProductForm = (props) => {
         })
             .then(res=>{
                 console.log(res.data);
-                //send back to home after submitting
+                //update products array
+                setProducts([...products, res.data]);
                 //clear out form
                 setTitle("");
-                setPrice(0);
+                setPrice("");
                 setDescription("");
-                navigate("/");
+
             })
             .catch((err)=>console.log(err))
     }
     
     return (
         <div>
-            <h1>Product Manager:</h1>
+            <h1>Add a Product:</h1>
             <form onSubmit={onSubmitHandler}>
                 <p>
                     <label>Title</label><br/>
@@ -45,7 +49,7 @@ const ProductForm = (props) => {
                 </p>
                 <p>
                     <label>Price</label><br/>
-                    <input type="number" valueasnumber={price} onChange = {(e)=>setPrice(e.target.value)}/>
+                    <input type="number" value={price} onChange = {(e)=>setPrice(e.target.value)}/>
                 </p>
                 <p>
                     <label>Description</label><br/>
