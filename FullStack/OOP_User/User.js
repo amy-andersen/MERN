@@ -1,39 +1,3 @@
-//Create user class
-class User {
-    //define attributes
-    constructor(username, emailAddress) {
-        this.name = username;
-        this.email = emailAddress;
-        this.accountBalance = 0;
-    }
-
-    //made deposit method
-    makeDeposit(amount) {
-        this.accountBalance += amount;
-        return this;
-    }
-
-    //make withdrawel method
-    makeWithdrawel(amount) {
-        this.accountBalance -= amount;
-        return this;
-    }
-
-    //display balance method
-    displayBalance() {
-        console.log(`User: ${this.name}, Balance: ${this.accountBalance}`)
-        return this;
-    }
-
-    //transfer money method
-    transferMoney(amount, reciever) {
-        this.accountBalance -= amount;
-        reciever.accountBalance += amount;
-        return this;
-    }
-
-}
-
 //Create bank account class
 class BankAccount {
     //define attributes
@@ -69,6 +33,46 @@ class BankAccount {
             }
         return this;
     }
+}
+
+//Create user class
+class User {
+    //define attributes
+    constructor(username, emailAddress) {
+        this.name = username;
+        this.email = emailAddress;
+        // this.accountBalance = 0;
+        this.account = new BankAccount(0.02, 0);
+    }
+
+    //made deposit method
+    makeDeposit(amount) {
+        // this.accountBalance += amount;
+        this.account.makeDeposit(amount);
+        return this;
+    }
+
+    //make withdrawel method
+    makeWithdrawel(amount) {
+        // this.accountBalance -= amount;
+        this.account.makeWithdrawel(amount);
+        return this;
+    }
+
+    //display balance method
+    displayBalance() {
+        // console.log(`User: ${this.name}, Balance: ${this.accountBalance}`)
+        this.account.displayBalance();
+        return this;
+    }
+
+    //transfer money method
+    transferMoney(amount, reciever) {
+        this.account.makeWithdrawel(amount);
+        reciever.account.makeDeposit(amount);
+        return this;
+    }
+
 }
 
 //create 3 user instances
