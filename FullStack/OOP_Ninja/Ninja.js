@@ -25,6 +25,19 @@ class Ninja {
     }
 }
 
+//new Sensei class that will inherit from Ninja
+class Sensei extends Ninja {
+    constructor(name, health =200, speed=10, strength=10, wisdom=10) {
+        super(name, health, speed, strength);
+        this.wisdom = wisdom;
+    }
+
+    speakWisdom() {
+        this.drinkSake();
+        console.log("I now have infinite wisdom!")
+    }
+}
+
 //create and test Ninjas
 const ninja1 = new Ninja("Billy", 15, 5, 7);
 ninja1.sayName();
@@ -37,3 +50,8 @@ ninja2.sayName();
 ninja2.showStats();
 ninja2.drinkSake();
 ninja2.showStats();
+
+//create and test Sensei
+const sensei1 = new Sensei("Wise Bobby");
+sensei1.showStats();
+sensei1.speakWisdom();
